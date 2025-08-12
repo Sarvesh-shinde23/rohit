@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -14,17 +16,41 @@ import {
   Camera,
   Music,
   Menu,
+  X,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useState, useEffect } from "react"
 
 export default function Component() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element
+      if (isMobileMenuOpen && !target.closest('.mobile-menu') && !target.closest('.mobile-menu-button')) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b">
         <div className="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
-          <div className="text-xl sm:text-2xl font-bold text-gray-900">ALEX</div>
+          <div className="text-xl sm:text-2xl font-bold text-gray-900">Rohit</div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
@@ -43,9 +69,18 @@ export default function Component() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <Button variant="ghost" size="sm">
-              <Menu className="w-5 h-5" />
+          <div className="lg:hidden mobile-menu-button">
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </Button>
           </div>
 
@@ -55,6 +90,75 @@ export default function Component() {
           </Button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`lg:hidden fixed inset-0 z-50 transition-opacity duration-300 ${
+        isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}></div>
+        <div className={`fixed top-0 right-0 w-80 h-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out mobile-menu ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="flex flex-col h-full">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="text-xl font-bold text-gray-900">Rohit</div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close mobile menu"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+            
+            {/* Mobile Menu Links */}
+            <nav className="flex-1 px-6 py-6">
+              <div className="space-y-6">
+                <Link 
+                  href="#about" 
+                  className="block text-lg font-medium text-gray-900 hover:text-pink-600 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link 
+                  href="#services" 
+                  className="block text-lg font-medium text-gray-900 hover:text-pink-600 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Services
+                </Link>
+                <Link 
+                  href="#portfolio" 
+                  className="block text-lg font-medium text-gray-900 hover:text-pink-600 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Portfolio
+                </Link>
+                <Link 
+                  href="#contact" 
+                  className="block text-lg font-medium text-gray-900 hover:text-pink-600 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
+            </nav>
+            
+            {/* Mobile Menu Footer */}
+            <div className="p-6 border-t border-gray-200">
+              <Button 
+                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Work With Me
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="pt-16 sm:pt-20 pb-12 sm:pb-16 bg-gradient-to-br from-gray-50 to-white">
@@ -113,7 +217,7 @@ export default function Component() {
               <div className="relative z-10 max-w-md mx-auto lg:max-w-none">
                 <Image
                   src="/placeholder.svg?height=600&width=500"
-                  alt="Alex - Fitness Influencer, Model & Dancer"
+                  alt="Rohit - Fitness Influencer, Model & Dancer"
                   width={500}
                   height={600}
                   className="rounded-2xl shadow-2xl drop-shadow-2xl w-full h-auto"
@@ -532,7 +636,7 @@ export default function Component() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                  &ldquo;Alex completely transformed my relationship with fitness. Her personalized approach and constant
+                  &ldquo;Rohit completely transformed my relationship with fitness. Her personalized approach and constant
                   motivation helped me lose 30 pounds and gain confidence I never knew I had.&rdquo;
                 </p>
                 <div className="flex items-center">
@@ -559,7 +663,7 @@ export default function Component() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                  &ldquo;Working with Alex on my modeling portfolio was incredible. Her industry knowledge and professional
+                  &ldquo;Working with Rohit on my modeling portfolio was incredible. Her industry knowledge and professional
                   network opened doors I never thought possible.&rdquo;
                 </p>
                 <div className="flex items-center">
@@ -586,7 +690,7 @@ export default function Component() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                  &ldquo;Alex&apos;s dance classes are pure magic. She creates such a supportive environment where everyone feels
+                  &ldquo;Rohit&apos;s dance classes are pure magic. She creates such a supportive environment where everyone feels
                   free to express themselves and grow as dancers.&rdquo;
                 </p>
                 <div className="flex items-center">
@@ -626,7 +730,7 @@ export default function Component() {
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-center">
                     <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500 mr-3" />
-                    <span className="text-sm sm:text-base text-gray-600">hello@alexfitness.com</span>
+                    <span className="text-sm sm:text-base text-gray-600">hello@Rohitfitness.com</span>
                   </div>
                   <div className="flex items-center">
                     <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500 mr-3" />
@@ -728,7 +832,7 @@ export default function Component() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div className="sm:col-span-2 lg:col-span-1">
-              <div className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">ALEX</div>
+              <div className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Rohit</div>
               <p className="text-sm sm:text-base text-gray-400 mb-3 sm:mb-4">
                 Empowering individuals through fitness, fashion, and dance to live their most confident lives.
               </p>
@@ -797,14 +901,14 @@ export default function Component() {
             <div>
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Contact Info</h3>
               <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-gray-400">
-                <li>hello@alexfitness.com</li>
+                <li>hello@Rohitfitness.com</li>
                 <li>+1 (555) 123-4567</li>
                 <li>Los Angeles, CA</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-sm sm:text-base text-gray-400">
-            <p>&copy; 2024 Alex Fitness. All rights reserved.</p>
+            <p>&copy; 2024 Rohit Fitness. All rights reserved.</p>
           </div>
         </div>
       </footer>
