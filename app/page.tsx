@@ -147,7 +147,7 @@ export default function Component() {
               </span>
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-              Proud to work alongside the world's most innovative brands in fitness, fashion, and lifestyle
+              Proud to work alongside the world&apos;s most innovative brands in fitness, fashion, and lifestyle
             </p>
           </div>
 
@@ -315,7 +315,7 @@ export default function Component() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">How I Can Help You</h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Whether you're looking to get fit, build confidence, or express yourself through movement, I offer
+              Whether you&apos;re looking to get fit, build confidence, or express yourself through movement, I offer
               personalized services to help you reach your goals.
             </p>
           </div>
@@ -518,7 +518,7 @@ export default function Component() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">What People Say</h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Real stories from clients who've transformed their lives through fitness, gained confidence through
+              Real stories from clients who&apos;ve transformed their lives through fitness, gained confidence through
               modeling, and found joy through dance.
             </p>
           </div>
@@ -532,8 +532,8 @@ export default function Component() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                  "Alex completely transformed my relationship with fitness. Her personalized approach and constant
-                  motivation helped me lose 30 pounds and gain confidence I never knew I had."
+                  &ldquo;Alex completely transformed my relationship with fitness. Her personalized approach and constant
+                  motivation helped me lose 30 pounds and gain confidence I never knew I had.&rdquo;
                 </p>
                 <div className="flex items-center">
                   <Image
@@ -559,8 +559,8 @@ export default function Component() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                  "Working with Alex on my modeling portfolio was incredible. Her industry knowledge and professional
-                  network opened doors I never thought possible."
+                  &ldquo;Working with Alex on my modeling portfolio was incredible. Her industry knowledge and professional
+                  network opened doors I never thought possible.&rdquo;
                 </p>
                 <div className="flex items-center">
                   <Image
@@ -586,8 +586,8 @@ export default function Component() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                  "Alex's dance classes are pure magic. She creates such a supportive environment where everyone feels
-                  free to express themselves and grow as dancers."
+                  &ldquo;Alex&apos;s dance classes are pure magic. She creates such a supportive environment where everyone feels
+                  free to express themselves and grow as dancers.&rdquo;
                 </p>
                 <div className="flex items-center">
                   <Image
@@ -612,9 +612,9 @@ export default function Component() {
       <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Let's Work Together</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Let&apos;s Work Together</h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Ready to start your transformation journey? Whether it's fitness, modeling, or dance, I'm here to help you
+              Ready to start your transformation journey? Whether it&apos;s fitness, modeling, or dance, I&apos;m here to help you
               achieve your goals.
             </p>
           </div>
